@@ -9,6 +9,7 @@ export default {
       offBlack: "#111111",
       shades: "#C8815F",
       orange: "#ff3f00",
+      green: "#15803d",
     },
   },
   plugins: [],

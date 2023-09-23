@@ -8,8 +8,7 @@ const ShapingCard = () => {
   const [items, setItems] = useState();
   const [categoryName, setCategoryName] = useState();
 
-  const handelChange = (e) => {
-    console.log(e.target.value);
+  const handelChangeCategory = (e) => {
     if (e.target.value === "all") {
       setItems(data);
     }
@@ -36,7 +35,6 @@ const ShapingCard = () => {
   };
   const newData = data;
 
-  console.log(categoryName);
 
   useEffect(() => {
     const category = [...new Set(newData?.map((el) => el.category))];
@@ -49,7 +47,6 @@ const ShapingCard = () => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
-  console.log(data);
 
   return (
     <div className="container mx-auto px-4 md:container md:mx-auto h-auto">
@@ -57,7 +54,7 @@ const ShapingCard = () => {
         <button
           className="p-2 m-2 rounded hover:text-white hover:bg-shades  border-shades border-transparent border-2"
           value="all"
-          onClick={(e) => handelChange(e)}
+          onClick={(e) => handelChangeCategory(e)}
         >
           All
         </button>
@@ -66,7 +63,7 @@ const ShapingCard = () => {
             className="p-2 m-2 rounded hover:text-white hover:bg-shades  border-shades border-transparent border-2"
             key={i}
             value={el}
-            onClick={(e) => handelChange(e)}
+            onClick={(e) => handelChangeCategory(e)}
           >
             {capitalizeFirstLetter(el)}
           </button>

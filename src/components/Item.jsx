@@ -1,4 +1,9 @@
+import { productData } from "../context/ProductContext";
+
 const Item = ({ el }) => {
+
+  const { handelItemInCard } = productData();
+
   return (
     // <div className="rounded hover:text-white hover:bg-shades  border-shades border-transparent border-2">
     //   <img className="h-50" src={el.image} alt="" />
@@ -14,9 +19,11 @@ const Item = ({ el }) => {
       </div>
       <div className="p-6">
         <p className="text-base text-neutral-600 dark:text-neutral-200">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+         {el.title}
         </p>
+      </div>
+      <div className="p-6">
+        <button className=" m-5 text-white bg-shades hover:bg-white hover:text-shades hover:border-shades  border-transparent border-2 mt-2 py-2 px-4 rounded" value={el.id} onClick={handelItemInCard}>Add to card</button>
       </div>
     </div>
   );
