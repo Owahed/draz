@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import { ContextProvider } from "./context/ProductContext";
 import { Toaster } from "react-hot-toast";
 import ProductPage from "./Page/ProductPage";
+import Example from "./components/OrderPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
+        <Example />
       </ContextProvider>
     </>
   );
