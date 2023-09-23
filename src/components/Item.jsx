@@ -1,7 +1,6 @@
 import { productData } from "../context/ProductContext";
 
 const Item = ({ el }) => {
-
   const { handelItemInCard } = productData();
 
   return (
@@ -19,11 +18,17 @@ const Item = ({ el }) => {
       </div>
       <div className="p-6">
         <p className="text-base text-neutral-600 dark:text-neutral-200">
-         {el.title}
+          {el.title}
         </p>
       </div>
       <div className="p-6">
-        <button className=" m-5 text-white bg-shades hover:bg-white hover:text-shades hover:border-shades  border-transparent border-2 mt-2 py-2 px-4 rounded" value={el.id} onClick={handelItemInCard}>Add to card</button>
+        <button
+          className=" m-5 text-white bg-shades hover:bg-white hover:text-shades hover:border-shades  border-transparent border-2 mt-2 py-2 px-4 rounded"
+          value={el.id}
+          onClick={handelItemInCard}
+        >
+          Add to card
+        </button>
       </div>
     </div>
   );

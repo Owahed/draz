@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const Context = createContext();
 
@@ -19,6 +20,10 @@ export function ContextProvider({ children }) {
     const cardItem = [...card, item];
 
     setCard([...new Set(cardItem)]);
+    toast.success("Product Added to cart!", {
+      duration: 2000,
+      className: "!shadow-[0_0_3px_rgba(205,205,205,.4)]",
+    });
   };
 
   const sideOpen = (first) => {
@@ -28,9 +33,17 @@ export function ContextProvider({ children }) {
   const removeCard = (e) => {
     const newCard = card.filter((el) => el.id !== e.target.value * 1);
     setCard(newCard);
+    toast.error("Remove to cart!", {
+      duration: 2000,
+      className: "!shadow-[0_0_3px_rgba(205,205,205,.4)]",
+    });
   };
 
   const handelCheckOut = () => {
+    toast.success("Purchase complete", {
+      duration: 2000,
+      className: "!shadow-[0_0_3px_rgba(205,205,205,.4)]",
+    });
     setCard([]);
     setOpen(false);
   };

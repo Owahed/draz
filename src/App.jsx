@@ -4,10 +4,13 @@ import Home from "./Page/Home";
 import Navbar from "./components/Navbar";
 import { ContextProvider } from "./context/ProductContext";
 import OrderPage from "./Page/OrderPage";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
+      {" "}
+      <Toaster />
       <ContextProvider>
         <Navbar />
         <Routes>
