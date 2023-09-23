@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { productData } from "../context/ProductContext";
 import { useEffect, useState } from "react";
+import { BsArrowRightShort } from "react-icons/bs";
 
 const ProductPage = () => {
   const { data, handelItemInCard } = productData();
@@ -44,7 +45,9 @@ const ProductPage = () => {
         >
           Add Card
         </button>
-        <Link to="/">Back to Shopping -> </Link>
+        <Link to="/">
+          Back to Shopping <BsArrowRightShort className="inline" />
+        </Link>
       </div>
     </div>
   );

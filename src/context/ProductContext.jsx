@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Context = createContext();
 
@@ -47,8 +47,7 @@ export function ContextProvider({ children }) {
     setCard([]);
     setOpen(false);
   };
-  console.log(card);
-  // console.log([...new Set(card)])
+
   return (
     <Context.Provider
       value={{

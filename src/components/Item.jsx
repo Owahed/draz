@@ -6,12 +6,14 @@ const Item = ({ el }) => {
   return (
     <div className="bg-white shadow-md hover:scale-105 hover:shadow-xl duration-500">
       {/* <a href="#"> */}
-      <img
-        src={el.image}
-        alt="Product image"
-        className="h-80 w-72 object-cover"
-        loading="lazy"
-      />
+      <Link to={`/product/${el.id}`}>
+        <img
+          src={el.image}
+          alt="Product image"
+          className="h-80 w-72 object-cover"
+          loading="lazy"
+        />
+      </Link>
       {/* </a> */}
       <div className="px-4 py-3 w-72">
         <span className="text-gray-400 mr-3 uppercase text-xs">
