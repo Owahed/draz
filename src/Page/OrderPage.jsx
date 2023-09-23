@@ -1,11 +1,20 @@
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { productData } from '../context/ProductContext';
-import {MdOutlineCancel}from 'react-icons/md'
+import { Fragment, useEffect, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { productData } from "../context/ProductContext";
+import { MdOutlineCancel } from "react-icons/md";
 
 export default function Example() {
-  const { card,setOpen ,open} = productData();
-  console.log(card)
+  const { card, setOpen, open, removeCard, handelCheckOut } = productData();
+
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    const sumWithInitial = card?.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.price,
+      0
+    );
+    setPrice(sumWithInitial);
+  }, [card]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -38,7 +47,9 @@ export default function Example() {
                   <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                     <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-lg font-medium text-gray-900">Shopping cart</Dialog.Title>
+                        <Dialog.Title className="text-lg font-medium text-gray-900">
+                          Shopping cart
+                        </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
                             type="button"
@@ -47,14 +58,17 @@ export default function Example() {
                           >
                             <span className="absolute -inset-0.5" />
                             <span className="sr-only">Close panel</span>
-                            <MdOutlineCancel/>
+                            <MdOutlineCancel />
                           </button>
                         </div>
                       </div>
 
                       <div className="mt-8">
                         <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
+                          <ul
+                            role="list"
+                            className="-my-6 divide-y divide-gray-200"
+                          >
                             {card.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -69,17 +83,25 @@ export default function Example() {
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={product.href}>{product.title}</a>
+                                        <a href={product.href}>
+                                          {product.title}
+                                        </a>
                                       </h3>
                                       <p className="ml-4">${product.price}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+                                    <p className="mt-1 text-sm text-gray-500">
+                                      {product.category}
+                                    </p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-green">In Stock {product.quantity}</p>
+                                    <p className="text-green">
+                                      In Stock {product.quantity}
+                                    </p>
 
                                     <div className="flex">
                                       <button
+                                        value={product.id}
+                                        onClick={(e) => removeCard(e)}
                                         type="button"
                                         className="font-medium text-orange hover:text-indigo-500"
                                       >
@@ -98,11 +120,15 @@ export default function Example() {
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>${price.toFixed(2)}</p>
+                        {/* <p>{card?.reduce((accumulator, currentValue) => console.log(accumulator.price,currentValue.price), 0)}</p> */}
                       </div>
-                      <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                      <p className="mt-0.5 text-sm text-gray-500">
+                        Shipping and taxes calculated at checkout.
+                      </p>
                       <div className="mt-6">
                         <a
+                          onClick={handelCheckOut}
                           href="#"
                           className="flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium shadow-sm  text-white bg-shades hover:bg-white hover:text-shades hover:border-shades "
                         >
@@ -131,5 +157,5 @@ export default function Example() {
         </div>
       </Dialog>
     </Transition.Root>
-  )
+  );
 }

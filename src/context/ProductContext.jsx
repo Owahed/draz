@@ -4,8 +4,8 @@ const Context = createContext();
 
 export function ContextProvider({ children }) {
   const [data, setData] = useState();
-  const [card,setCard]=useState([])
-  const [open, setOpen] = useState(false)
+  const [card, setCard] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -13,21 +13,44 @@ export function ContextProvider({ children }) {
       .then((json) => setData(json));
   }, []);
 
+  const handelItemInCard = (e) => {
+    const item = data?.find(({ id }) => id === e.target.value * 1);
 
-  const handelItemInCard=(e)=>{
-    const item=data?.find(({id})=>id===(e.target.value)*1)
-  
-    const cardItem=([...card,item])
-    setCard([...new Set(cardItem)])
-  }
+    const cardItem = [...card, item];
 
-  const sideOpen=(first)=>{
-   setOpen(first)
-  }
-console.log(open)
-// console.log([...new Set(card)])
+    setCard([...new Set(cardItem)]);
+  };
+
+  const sideOpen = (first) => {
+    setOpen(first);
+  };
+
+  const removeCard = (e) => {
+    const newCard = card.filter((el) => el.id !== e.target.value * 1);
+    setCard(newCard);
+  };
+
+  const handelCheckOut = () => {
+    setCard([]);
+    setOpen(false);
+  };
+  // console.log(card);
+  // console.log([...new Set(card)])
   return (
-    <Context.Provider value={{ data, handelItemInCard ,card,open,setOpen,sideOpen}}>{children}</Context.Provider>
+    <Context.Provider
+      value={{
+        data,
+        handelItemInCard,
+        card,
+        open,
+        setOpen,
+        sideOpen,
+        removeCard,
+        handelCheckOut,
+      }}
+    >
+      {children}
+    </Context.Provider>
   );
 }
 
