@@ -1,22 +1,27 @@
 import { Link, useParams } from "react-router-dom";
 import { productData } from "../context/ProductContext";
+import { useEffect, useState } from "react";
 
 const ProductPage = () => {
   const { data, handelItemInCard } = productData();
+  const [pro, setPro] = useState([]);
 
   const { id } = useParams();
-  const product = data?.find((el) => el.id === id * 1);
+  useEffect(() => {
+    const dat = data?.find((el) => el.id === id * 1);
+    setPro(dat);
+  }, []);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 items-center container mx-auto px-4 md:container md:mx-auto h-auto">
       <div className="m-5 p-5">
-        <img className="w-96 h-96" src={product.image} alt="" />
+        <img className="w-96 h-96" src={pro?.image} alt="" />
       </div>
       <div>
         <h1 className="text-lg font-bold text-black truncate block capitalize lg:m-5">
-          {product.title}
+          {pro.title}
         </h1>
-        <p className="lg:m-5">{product.description}</p>
-        <p className="lg:m-5">${product.price}</p>
+        <p className="lg:m-5">{pro.description}</p>
+        <p className="lg:m-5">${pro.price}</p>
         <p>
           <div className="flex items-center lg:m-5">
             <svg

@@ -19,7 +19,7 @@ const Item = ({ el }) => {
         </span>
         <Link
           to={`/product/${el.id}`}
-          className="text-lg font-bold text-black truncate block capitalize"
+          className="text-lg font-bold text-black truncate block capitalize hover:text-shades"
         >
           {el.title}
         </Link>
