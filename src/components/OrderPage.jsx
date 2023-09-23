@@ -15,7 +15,7 @@ export default function Example() {
     );
     setPrice(sumWithInitial);
   }, [card]);
-
+  console.log(card);
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -69,12 +69,12 @@ export default function Example() {
                             role="list"
                             className="-my-6 divide-y divide-gray-200"
                           >
-                            {card.map((product) => (
+                            {card?.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.image}
-                                    alt={product.image}
+                                    src={product?.image}
+                                    // alt={product.image}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>

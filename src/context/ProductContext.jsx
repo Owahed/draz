@@ -15,7 +15,7 @@ export function ContextProvider({ children }) {
   }, []);
 
   const handelItemInCard = (e) => {
-    const item = data?.find(({ id }) => id === e.target.value * 1);
+    const item = data?.find(({ id }) => id === e * 1);
 
     const cardItem = [...card, item];
 
@@ -47,7 +47,7 @@ export function ContextProvider({ children }) {
     setCard([]);
     setOpen(false);
   };
-  // console.log(card);
+  console.log(card);
   // console.log([...new Set(card)])
   return (
     <Context.Provider

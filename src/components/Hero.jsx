@@ -12,7 +12,7 @@ const Hero = () => {
           <p className="text-18 mb-35 m-5">
             Use code HOLIDAY at checkout. Ends 11/29/23
           </p>
-          <a className=" m-5 text-white bg-shades hover:bg-white hover:text-shades hover:border-shades  border-transparent border-2 mt-2 py-2 px-4 rounded">
+          <a className=" lg:m-5 text-white bg-shades hover:bg-white hover:text-shades hover:border-shades  border-transparent border-2 mt-2 py-2 px-4 rounded">
             View Collection
           </a>
         </div>

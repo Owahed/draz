@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Page/Home";
 import Navbar from "./components/Navbar";
 import { ContextProvider } from "./context/ProductContext";
-import OrderPage from "./Page/OrderPage";
 import { Toaster } from "react-hot-toast";
+import ProductPage from "./Page/ProductPage";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/order" element={<OrderPage />}></Route>
+          <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
       </ContextProvider>
     </>

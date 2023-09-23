@@ -35,7 +35,6 @@ const ShapingCard = () => {
   };
   const newData = data;
 
-
   useEffect(() => {
     const category = [...new Set(newData?.map((el) => el.category))];
 
@@ -47,10 +46,9 @@ const ShapingCard = () => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
-
   return (
     <div className="container mx-auto px-4 md:container md:mx-auto h-auto">
-      <div className="flex justify-center mt-5 ">
+      <div className="grid content-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 mt-5 ">
         <button
           className="p-2 m-2 rounded hover:text-white hover:bg-shades  border-shades border-transparent border-2"
           value="all"
@@ -70,7 +68,7 @@ const ShapingCard = () => {
         ))}
       </div>
       <div>
-        <div className="grid grid-cols-5 gap-3 m-5 p-3  ">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 m-5 p-3 md:grid-cols-3 sm:grid-cols-2 content-center	">
           {items?.map((el) => (
             <Item key={el.id} el={el} />
           ))}

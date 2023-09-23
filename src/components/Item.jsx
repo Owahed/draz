@@ -1,34 +1,55 @@
+import { Link } from "react-router-dom";
 import { productData } from "../context/ProductContext";
-
 const Item = ({ el }) => {
   const { handelItemInCard } = productData();
 
   return (
-    // <div className="rounded hover:text-white hover:bg-shades  border-shades border-transparent border-2">
-    //   <img className="h-50" src={el.image} alt="" />
-    //   <p>{el.category}</p>
-    // </div>
-    <div className="block max-w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-      <div className="relative overflow-hidden rounded-xl h-96">
-        <img
-          className="rounded-t-lg w-full h-full object-contain group-hover:scale-125 group-hover:rotate-3 duration-500"
-          src={el.image}
-          alt=""
-        />
-      </div>
-      <div className="p-6">
-        <p className="text-base text-neutral-600 dark:text-neutral-200">
-          {el.title}
-        </p>
-      </div>
-      <div className="p-6">
-        <button
-          className=" m-5 text-white bg-shades hover:bg-white hover:text-shades hover:border-shades  border-transparent border-2 mt-2 py-2 px-4 rounded"
-          value={el.id}
-          onClick={handelItemInCard}
+    <div className="bg-white shadow-md hover:scale-105 hover:shadow-xl duration-500">
+      {/* <a href="#"> */}
+      <img
+        src={el.image}
+        alt="Product image"
+        className="h-80 w-72 object-cover"
+        loading="lazy"
+      />
+      {/* </a> */}
+      <div className="px-4 py-3 w-72">
+        <span className="text-gray-400 mr-3 uppercase text-xs">
+          {el.category}
+        </span>
+        <Link
+          to={`/product/${el.id}`}
+          className="text-lg font-bold text-black truncate block capitalize"
         >
-          Add to card
-        </button>
+          {el.title}
+        </Link>
+        <div className="flex items-center">
+          <p className="text-lg font-semibold text-black cursor-auto my-3">
+            ${el.price}
+          </p>
+          <del>
+            <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+          </del>
+          <div
+            className="ml-auto cursor-pointer	hover:text-shades"
+            onClick={() => handelItemInCard(el.id)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              className="bi bi-bag-plus"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+              />
+              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   );
